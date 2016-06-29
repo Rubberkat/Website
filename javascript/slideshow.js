@@ -1,32 +1,68 @@
-/**
- * Created by Roy on 28/06/16.
- */
+var plusButton = document.getElementsByClassName("plus")[0];
+var minButton = document.getElementsByClassName("min")[0];
+var myIndex = 0;
+var time = 2000;
+var timeout;
 
+function goToSlide$() {
+    $('.mySlides').each(function (index, element) {
+        $(element).hide();
+    });
 
+    var numSlides = $('.mySlides').length;
 
-var myIndex = 1;
+    if (myIndex >= numSlides) {
+        myIndex = 0;
+    }
+    if (myIndex < 0) {
+        myIndex = numSlides - 1;
+    }
 
-function plusDivs(n) {
-    carousel(myIndex += n);
+    $('.mySlides').eq(myIndex).show();
 }
 
-carousel();
 
-function carousel(n) {
+function goToSlide() {
     var i;
-    var x = document.getElementsByClassName("mySlides");
-
-    //if (n > x.length) {slideIndex = 1}
-    //if (n < 1) {slideIndex = x.length}
 
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
 
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 2000); 
+    if (myIndex >= x.length) {
+        myIndex = 0;
+    }
+    if (myIndex < 0) {
+        myIndex = x.length - 1;
+    }
+
+    x[myIndex].style.display = "block";
 }
 
+function minDivs() {
+    myIndex--;
+    goToSlide$();
+    window.clearTimeout(timeout);
+    timeout = setTimeout(carousel, time);
+}
 
+function plusDivs() {
+    myIndex++;
+    goToSlide$();
+    window.clearTimeout(timeout);
+    timeout = setTimeout(carousel, time);
+}
+
+function carousel() {
+    myIndex++;
+    goToSlide$();
+    timeout = setTimeout(carousel, time);
+}
+
+//plusButton.addEventListener("click", plusDivs);
+//minButton.addEventListener("click", minDivs);
+
+$('.plus').click(plusDivs);
+$('.min').click(minDivs);
+
+carousel();
