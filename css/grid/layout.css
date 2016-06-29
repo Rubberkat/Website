@@ -7,7 +7,7 @@ body {
 
 .container {
 
-    width: 800px; /*Set the width of the entire website here */
+    width: 650px; /*Set the width of the entire website here */
     margin-right: auto;
     margin-left: auto; /* Margin-left and right are set to auto to center the container */
 
@@ -74,7 +74,7 @@ body {
     margin-left: 2%;
 }
 .row {
-    min-width:800px;
+    min-width:650px;
     width: 100%;
     clear: both; /* Clear creates new styles for the next row */
     padding: 0;
